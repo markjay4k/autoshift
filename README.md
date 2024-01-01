@@ -53,4 +53,6 @@ Client_](https://github.com/transmission/transmission).
     LOG_LEVEL=DEBUG
     CRON_SCHEDULE=0 */4 * * *
     ```
-
+4. Choose an appropriate scan interval with the `CRON_SCHEDULE` variable. You
+   can refer to [Cron GURU](https://crontab.guru/examples.html) for simple
+   copy/paste options to use. The example provided is once every 4 hours.
