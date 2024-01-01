@@ -8,30 +8,34 @@ import os
 
 
 def msync(args):
+    bold = '\033[1m' 
+    unbold = '\033[0m' 
+    aqua = '\x1b[36;20m'
+    green = '\x1b[32;20m'
+    nocolor = '\x1b[0m'
+    
     dpath = '/store/media' 
     log = clogger.log(args.loglevel)
-    log.info(f'MSYNC: Mork\'s torrent syncing script')
+    log.info(f'{aqua}{bold}MSYNC: Mork\'s torrent syncing script{unbold}{nocolor}')
     log.info(f'-------------------------------------')
     log.debug(f'running with the following argument values:')
     for arg, val in vars(args).items():
         log.debug(f'  - {arg:>8s}: {val}')
     client = TClient()
     torrents = client.done_torrents()
-    log.info(f'')
     log.info(f'Starting torrent scan')
-    log.info(f'')
 
     n = None
     for n, torrent in enumerate(torrents):
         if torrent.torr.mediatype!=args.media and args.media!='all':
-            log.debug(f'{torrent.torr.mediatype.upper():>6s}: SKIPPING {torrent.name}')
+            log.debug(f'{aqua}{bold}{torrent.torr.mediatype.upper():>6s}{unbold}{nocolor}: SKIPPING {torrent.name}')
             continue
         newpath = torrent.new_path()
         oldpath = torrent.path
-        log.info(f'{torrent.torr.mediatype.upper():>6s} -> {torrent.name}')
+        log.info(f'{bold}{torrent.torr.mediatype.upper():>6s}{unbold} -> {torrent.name}')
         if args.verbose:
-            log.info(f'    from: {oldpath.replace(dpath, "")}')
-            log.info(f'      to: {newpath.replace(dpath, "")}')
+            log.info(f'   {bold}from{unbold}: {oldpath.replace(dpath, "")}')
+            log.info(f'     {bold}to{unbold}: {newpath.replace(dpath, "")}')
         if args.dryrun:
             continue
         else:
@@ -39,9 +43,7 @@ def msync(args):
             log.info(f'  Removing torrent: {torrent.name}')
             client.remove_torrent(torrent)
     else:
-        log.info(f'')
-        log.info(f'Torrent scan complete')
-        log.info(f'')
+        log.info(f'{green}{bold}Torrent scan complete{unbold}{nocolor}')
 
     if n is None:
         log.info(f'No torrent(s) ready to transfer')

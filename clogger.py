@@ -15,10 +15,7 @@ class ColorFormatter(logging.Formatter):
         YELLOW = "\x1b[33;20m"
         RED = "\x1b[31;20m"
         BOLD_RED = "\x1b[31;1m"
-        ITALIC = '\033[3m'
-        BOLD = '\033[1m'
-        END = '\033[0m'    
-        
+
         self.colors = {
             logging.DEBUG: GREY,
             logging.INFO: GREEN,
@@ -55,6 +52,11 @@ def log(
         'ERROR': logging.ERROR,
         'CRITITCAL': logging.CRITICAL
     }
+    
+    bold = '\033[1m'
+    unbold = '\033[0m'
+    aqua = '\x1b[36;20m'
+    nocolor = '\x1b[0m'
 
     try:
         level = loglevel[level.upper()]
@@ -72,7 +74,7 @@ def log(
     levelname = '#c{levelname:>8s}#r'
     message = '{message}'
     formatter = ColorFormatter(
-        fmt=f'{asctime}.{msecs}| {module} {levelname}| {message}',
+        fmt=f'{asctime}.{msecs}| {aqua}{bold}{module}{unbold}{nocolor} {levelname}| {message}',
         datefmt='%Y-%m-%d %H:%M:%S',
         style='{'
    )
