@@ -19,6 +19,7 @@ services:
       - TR_PASS=${TR_PASS}
       - LOG_LEVEL=${LOG_LEVEL}
       - CRON_SCHEDULE=${CRON_SCHEDULE}
+      - VERBOSE=${VERBOSE}
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -32,6 +33,7 @@ services:
         - TR_PASS=${TR_PASS}
         - LOG_LEVEL=${LOG_LEVEL}
         - CRON_SCHEDULE=${CRON_SCHEDULE}
+        - VERBOSE=${VERBOSE}
 networks:
   torrents:
     external: true
