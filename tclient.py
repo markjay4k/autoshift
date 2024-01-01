@@ -6,7 +6,6 @@ from direntree import DirEntree
 import PTN as ptn
 import clogger 
 import os
-#import __init__
 
 
 class TClient:

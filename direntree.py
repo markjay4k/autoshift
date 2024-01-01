@@ -1,26 +1,35 @@
 #!/usr/bin/env python3
 
 from transmission_rpc import torrent
+import clogger
 import os
 
 
 class DirEntree:
+    loglevel = os.getenv('LOG_LEVEL')
     jf_movies = os.getenv('JF_MOVIES')
     jf_shows = os.getenv('JF_SHOWS')
     tr_dir = os.getenv('TR_PATH')
 
     def __init__(self, torr: torrent.Torrent) -> None:
+        self.log = clogger.log(self.loglevel, log_name='direntree')
         self.torr = torr
         self.id = self.torr.id
         self.path = os.path.join(self.tr_dir, torr.name)
         self.name = os.path.basename(self.path)
         self.mediatype = self.torr.mediatype 
         if not torr.download_done:
-            raise FileNotFoundError(f'Download incomplete: {torrent.name=}')
+            error = f'Download incomplete: {torrent.name=}'
+            self.log.warning(error)
+            raise FileNotFoundError(error)
         if not torr.download_done:
-            raise AttributeError(f'Seeding incomplete: {torrent.name=}')
+            error = f'Seeding incomplete: {torrent.name=}'
+            self.log.warning(error)
+            raise AttributeError(error)
         if self.mediatype == 'UNDEFINED':
-            raise ValueError(f'torrent mediatype is undefined')
+            error = f'torrent mediatype is undefined'
+            self.log.warning(error)
+            raise ValueError(error)
 
     def is_dir(self) -> bool:
         return os.path.isdir(self.path)
