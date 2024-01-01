@@ -3,7 +3,6 @@ RUN apt-get update && apt-get -y install cron
 
 WORKDIR /app
 
-#COPY crontab /etc/cron.d/
 COPY cron_schedule.sh .
 COPY requirements.txt .
 COPY direntree.py .
@@ -32,10 +31,15 @@ RUN echo "LOG_LEVEL=$LOG_LEVEL" >> /etc/environment
 RUN echo "CRON_SCHEDULE=$CRON_SCHEDULE" >> /etc/environment
 
 RUN chmod +x cron_schedule.sh
-#RUN chmod 0644 /etc/cron.d/crontab
 RUN touch /var/log/cron.log
+RUN echo "---------------------" >> /var/log/cron.log
+RUN echo "AUTOSHIFT" >> /var/log/cron.log
+RUN echo "    author: markjay4k" >> /var/log/cron.log
+RUN echo "   version: 0.1" >> /var/log/cron.log
+RUN echo "---------------------" >> /var/log/cron.log
+RUN echo "cron schedule: ${CRON_SCHEDULE}" >> /var/log/cron.log
+RUN echo "    log level: ${LOG_LEVEL}" >> /var/log/cron.log
 RUN pip3 install -r requirements.txt
-#RUN crontab /etc/cron.d/crontab
 RUN ./cron_schedule.sh
 
 CMD cron && tail -f /var/log/cron.log
