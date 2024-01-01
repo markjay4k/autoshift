@@ -8,9 +8,10 @@ services:
     networks:
       - torrents 
     volumes:
-      - ${TR_PATH}:${TR_PATH}
-      - ${JF_MOVIES}:${JF_MOVIES}
-      - ${JF_SHOWS}:${JF_SHOWS}
+      - ${BASE_MEDIA}:${BASE_MEDIA}
+      #- ${TR_PATH}:${TR_PATH}
+      #- ${JF_MOVIES}:${JF_MOVIES}
+      #- ${JF_SHOWS}:${JF_SHOWS}
     environment:
       - TR_PATH=${TR_PATH}
       - JF_MOVIES=${JF_MOVIES}

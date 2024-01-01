@@ -23,12 +23,12 @@ def msync(args):
 
     n = None
     for n, torrent in enumerate(torrents):
-        if torrent.mediatype!=args.media and args.media!='all':
-            log.debug(f'{torrent.mediatype.upper():>6s}: SKIPPING {torrent.name}')
+        if torrent.torr.mediatype!=args.media and args.media!='all':
+            log.debug(f'{torrent.torr.mediatype.upper():>6s}: SKIPPING {torrent.name}')
             continue
         newpath = torrent.new_path()
         oldpath = torrent.path
-        log.info(f'{torrent.mediatype.upper():>6s} -> {torrent.name}')
+        log.info(f'{torrent.torr.mediatype.upper():>6s} -> {torrent.name}')
         if args.verbose:
             log.info(f'    from: {oldpath.replace(dpath, "")}')
             log.info(f'      to: {newpath.replace(dpath, "")}')
