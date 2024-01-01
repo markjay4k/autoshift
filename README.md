@@ -47,10 +47,10 @@ Client_](https://github.com/transmission/transmission).
 3. create a `.env` file with the following environment variables
 
     ```yaml
+    BASE_MEDIA=/path/to/ZFS_dataset   # both libraries stored here
     TR_PATH=/path/to/transmission/downloads/directory
     JF_MOVIES=/path/to/jellyfin/movies/directory
     JF_SHOWS=/path/to/jellyfin/shows/directory
-    JF_PATH=/store/media/jellyfin
     TR_HOST_IP=transmission.torrents
     TR_HOST_PORT=9091
     TR_USER=username #optional
@@ -61,3 +61,7 @@ Client_](https://github.com/transmission/transmission).
 4. Choose an appropriate scan interval with the `CRON_SCHEDULE` variable. You
    can refer to [Cron GURU](https://crontab.guru/examples.html) for simple
    copy/paste options to use. The example provided is once every 4 hours.
+5. Start the container with Docker Compose
+    ```bash
+    docker compose up -d --build
+    ```
