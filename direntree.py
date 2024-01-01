@@ -2,7 +2,7 @@
 
 from transmission_rpc import torrent
 import os
-#import __init__
+
 
 class DirEntree:
     jf_movies = os.getenv('JF_MOVIES')

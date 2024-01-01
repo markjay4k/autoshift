@@ -9,14 +9,12 @@ services:
       - torrents 
     volumes:
       - ${TR_PATH}:${TR_PATH}
-      - ${JF_PATH}:${JF_PATH}
       - ${JF_MOVIES}:${JF_MOVIES}
       - ${JF_SHOWS}:${JF_SHOWS}
     environment:
       - TR_PATH=${TR_PATH}
       - JF_MOVIES=${JF_MOVIES}
       - JF_SHOWS=${JF_SHOWS}
-      - JF_PATH=${JF_PATH}
       - TR_HOST_IP=${TR_HOST_IP}
       - TR_HOST_PORT=${TR_HOST_PORT}
       - TR_USER=${TR_USER}
@@ -30,7 +28,6 @@ services:
         - TR_PATH=${TR_PATH}
         - JF_MOVIES=${JF_MOVIES}
         - JF_SHOWS=${JF_SHOWS}
-        - JF_PATH=${JF_PATH}
         - TR_HOST_IP=${TR_HOST_IP}
         - TR_HOST_PORT=${TR_HOST_PORT}
         - TR_USER=${TR_USER}

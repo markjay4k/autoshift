@@ -1,1 +1,0 @@
-0 */4 * * * /usr/local/bin/python /app/msync.py --loglevel $LOG_LEVEL --verbose >> /var/log/cron.log 2>&1

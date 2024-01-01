@@ -5,13 +5,11 @@ from tclient import TClient
 import argparse
 import clogger
 import os
-#import __init__
 
 
 def msync(args):
     dpath = '/store/media' 
     log = clogger.log(args.loglevel)
-    #log = clogger.log(os.getenv('LOG_LEVEL'))
     log.info(f'MSYNC: Mork\'s torrent syncing script')
     log.info(f'-------------------------------------')
     log.debug(f'running with the following argument values:')
@@ -22,6 +20,8 @@ def msync(args):
     log.info(f'')
     log.info(f'Starting torrent scan')
     log.info(f'')
+
+    n = None
     for n, torrent in enumerate(torrents):
         if torrent.mediatype!=args.media and args.media!='all':
             log.debug(f'{torrent.mediatype.upper():>6s}: SKIPPING {torrent.name}')
@@ -43,11 +43,15 @@ def msync(args):
         log.info(f'Torrent scan complete')
         log.info(f'')
 
-    if args.dryrun:
-        log.info(f'No torrent(s) files were transferred to Jellyfin library')
-        log.info(f'run without "--dryrun" flag to transfer')
+    if n is None:
+        log.info(f'No torrent(s) ready to transfer')
     else:
-        log.info(f'{n+1} torrent(s) were transferred to Jellyfin library')
+        if args.dryrun:
+            log.info(f'{n+1} torrent(s) ready to transfer to Jellyfin')
+            log.info(f'None were transferred because (--dryrun=True)')
+            log.info(f'run script without "--dryrun" flag to transfer')
+        else:
+            log.info(f'{n+1} torrent(s) transferred to Jellyfin library')
 
 
 if __name__ == '__main__':
