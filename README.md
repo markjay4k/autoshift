@@ -28,20 +28,20 @@ Client_](https://github.com/transmission/transmission).
 1. Install [Docker Engine and Compose](https://docs.docker.com/engine/install/).
 2. Clone autoshift
 
-    ```shell
-    git clone <repo>
+    ```bash
+    git clone git@github.com:markjay4k/autoshift.git
     cd autoshift
     ```
 
 3. create a docker network called `torrents`
 
-    ```
-        docker network create torrents
+    ```bash
+    docker network create torrents
     ```
 
 3. create a `.env` file with the following environment variables
 
-    ```shell
+    ```yaml
     TR_PATH=/path/to/transmission/downloads/directory
     JF_MOVIES=/path/to/jellyfin/movies/directory
     JF_SHOWS=/path/to/jellyfin/shows/directory
