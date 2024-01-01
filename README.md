@@ -19,26 +19,31 @@ from _Transmission_ following the transfer.
 
 - Autoshift uses `transmission_rpc` and only works with [_Transmission Bittorrent
 Client_](https://github.com/transmission/transmission).
-- If using ZFS, it's recommended for both _Transmission_ and _Jellyfin_ to share the
-    same dataset. This makes the torrent transfer simply an update of metadata,
-    rather than moving large audio/video files.
+- It's highly recommended for both _Transmission_ and _Jellyfin_ libraries to use the
+    same filesystem. This makes the torrent transfer fast. For example, with ZFS, having 
+    both libraries on the same dataset means the move is simply updating metadata, 
+    rather than moving large audio/video files. If they are separate
+    filesystems, the entire files need to be copied and deleted which consumes
+    much more time, electrical power, and ware on your storage drives.
+
+## ASSUMPTIONS
+
+1. You have [Docker Engine and Compose](https://docs.docker.com/engine/install/) already installed.
+2. You have _Transmission_ and _Jellyfin_ installed (preferrably as Docker
+   containers).
 
 ## INSTALL
 
-1. Install [Docker Engine and Compose](https://docs.docker.com/engine/install/).
-2. Clone autoshift
-
+1. Clone autoshift
     ```bash
     git clone git@github.com:markjay4k/autoshift.git
     cd autoshift
     ```
-
-3. create a docker network called `torrents`
+2. create a docker network called `torrents`
 
     ```bash
     docker network create torrents
     ```
-
 3. create a `.env` file with the following environment variables
 
     ```yaml
