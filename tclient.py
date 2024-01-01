@@ -33,7 +33,7 @@ class TClient:
         self.skipexts = ( 
             'txt', 'png', 'jpg', 'nfo', 'sfv', 'ske', 'ass', 'srt'
         )
-        self.keepexts = ('mkv', 'mp4')
+        self.keepexts = ('mkv', 'mp4', 'avi')
 
     def _check_season(self, torr: torrent.Torrent) -> bool:
         data = {'title': [], 'season': []}
