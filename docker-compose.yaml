@@ -1,0 +1,42 @@
+version: '3'
+services:
+  autoshift:
+    container_name: autoshift
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - torrents 
+    volumes:
+      - ${TR_PATH}:${TR_PATH}
+      - ${JF_PATH}:${JF_PATH}
+      - ${JF_MOVIES}:${JF_MOVIES}
+      - ${JF_SHOWS}:${JF_SHOWS}
+    environment:
+      - TR_PATH=${TR_PATH}
+      - JF_MOVIES=${JF_MOVIES}
+      - JF_SHOWS=${JF_SHOWS}
+      - JF_PATH=${JF_PATH}
+      - TR_HOST_IP=${TR_HOST_IP}
+      - TR_HOST_PORT=${TR_HOST_PORT}
+      - TR_USER=${TR_USER}
+      - TR_PASS=${TR_PASS}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - CRON_SCHEDULE=${CRON_SCHEDULE}
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - TR_PATH=${TR_PATH}
+        - JF_MOVIES=${JF_MOVIES}
+        - JF_SHOWS=${JF_SHOWS}
+        - JF_PATH=${JF_PATH}
+        - TR_HOST_IP=${TR_HOST_IP}
+        - TR_HOST_PORT=${TR_HOST_PORT}
+        - TR_USER=${TR_USER}
+        - TR_PASS=${TR_PASS}
+        - LOG_LEVEL=${LOG_LEVEL}
+        - CRON_SCHEDULE=${CRON_SCHEDULE}
+networks:
+  torrents:
+    external: true
