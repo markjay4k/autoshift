@@ -1,9 +1,36 @@
 #!/usr/bin/env python3
 
 from logging.handlers import RotatingFileHandler
+from dataclasses import dataclass
 import logging
 import sys
 import os
+
+
+@dataclass
+class mods:
+    _aqua: str = '\x1b[36;20m'
+    _green: str = '\x1b[32;20'
+    _yellow: str = '\x1b[33;20m'
+    _red: str = '\x1b[31;20m'
+    _uncolor: str = '\x1b[0m'
+    _bold: str = '\033[1m'
+    _unbold: str = '\033[0'
+
+    def bold(self, text: str) -> str:
+        return f'{self._bold}{text}{self._unbold}'
+
+    def aqua(self, text: str) -> str:
+        return f'{self._bold}{self._aqua} {text}{self._uncolor}'
+
+    def green(self, text: str) -> str:
+        return f'{self._bold}{self._green} {text}{self._uncolor}'
+
+    def yellow(self, text: str) -> str:
+        return f'{self._yellow} {text}{self._uncolor}'
+
+    def red(self, text: str) -> str:
+        return f'{self._red} {text}{self._uncolor}'
 
 
 class ColorFormatter(logging.Formatter):
