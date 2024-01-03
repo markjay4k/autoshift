@@ -13,6 +13,7 @@ class DirEntree:
 
     def __init__(self, torr: torrent.Torrent) -> None:
         self.log = clogger.log(self.loglevel, logger_name='direntree')
+        self.mod = clogger.mods()
         self.torr = torr
         self.id = self.torr.id
         self.path = os.path.join(self.tr_dir, torr.name)
@@ -28,7 +29,7 @@ class DirEntree:
             raise AttributeError(error)
         if self.mediatype == 'UNDEFINED':
             error = f'torrent mediatype is undefined'
-            self.log.warning(error)
+            self.log.warning(self.mod.bold(error))
             raise ValueError(error)
 
     def is_dir(self) -> bool:
