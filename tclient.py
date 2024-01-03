@@ -22,6 +22,7 @@ class TClient:
 
     def __init__(self) -> None:
         self.log = clogger.log(self.loglevel, logger_name='client')
+        self.mod = clogger.mods()
         self.client = Client(
             host=os.getenv('TR_HOST_IP'),
             port=os.getenv('TR_HOST_PORT'),
@@ -36,15 +37,17 @@ class TClient:
 
     def _check_season(self, torr: torrent.Torrent) -> bool:
         data = {'title': [], 'season': []}
+        self.log.debug(f'checking if season: {torr.name}')
         for file in torr.get_files():
             fname = os.path.basename(file.name)
             extension = os.path.splitext(fname)[-1]
-            if extension in self.skipexts:
-                continue
-            if file.size < 50e6:
+            if extension in self.skipexts or file.size < 30e6:
                 continue
             info = ptn.parse(fname)
             if self.SEASON in info and self.EPISODE in info:
+                self.log.debug(
+                    f'season: {info[self.SEASON]:02d}, episode {info[self.EPISODE]:02d}'
+                )
                 for k, v in info.items():
                     if k in data.keys():
                         data[k].append(v)
