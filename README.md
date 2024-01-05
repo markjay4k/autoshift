@@ -28,8 +28,10 @@ Client_](https://github.com/transmission/transmission).
 
 ## ASSUMPTIONS
 
-1. You have [Docker Engine and Compose](https://docs.docker.com/engine/install/) already installed.
-2. You have _Transmission_ and _Jellyfin_ installed (preferrably as Docker
+1. You have [Docker Engine and Compose](https://docs.docker.com/engine/install/) already 
+installed.
+2. You have [_Transmission_](https://github.com/transmission/transmission) and 
+[_Jellyfin_](https://github.com/jellyfin/jellyfin) installed (preferrably as Docker
    containers).
 
 ## INSTALL
