@@ -19,8 +19,8 @@ from _Transmission_ following the transfer.
 
 - Autoshift uses `transmission_rpc` and only works with [_Transmission Bittorrent
 Client_](https://github.com/transmission/transmission).
-- It's highly recommended for both _Transmission_ and _Jellyfin_ libraries to use the
-    same filesystem. This makes the torrent transfer fast. For example, with ZFS, having 
+- It's highly recommended to put both _Transmission_ and _Jellyfin_ libraries on the
+    same filesystem, which makes torrent transfer super fast. For example, with ZFS, having 
     both libraries on the same dataset means the move is simply updating metadata, 
     rather than moving large audio/video files. If they are separate
     filesystems, the entire files need to be copied and deleted which consumes
@@ -53,8 +53,8 @@ Client_](https://github.com/transmission/transmission).
     JF_SHOWS=/path/to/jellyfin/shows/directory
     TR_HOST_IP=transmission.torrents
     TR_HOST_PORT=9091
-    TR_USER=username #optional
-    TR_PASS=password #optional
+    TR_USER=username #transmission username (optional)
+    TR_PASS=password #transmission password (optional)
     LOG_LEVEL=DEBUG
     CRON_SCHEDULE=0 */4 * * *
     ```
