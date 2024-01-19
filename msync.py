@@ -8,9 +8,8 @@ import os
 
 
 def msync(args):
-    mod = clogger.mods()
-    
     dpath = '/store/media' 
+    mod = clogger.mods()
     log = clogger.log(args.loglevel)
     log.info(mod.aqua(f'MSYNC: Mork\'s torrent syncing script'))
     log.info(f'-------------------------------------')
