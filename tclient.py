@@ -88,10 +88,11 @@ class TClient:
 
     def done_torrents(self):
         """
-        returns a generator of all torrents that are ready to transfer
-        ready means the torrent met its seed threshold
-        transfer means move to corresponding jellyfin directory
+        returns generator of torrents ready to transfer
+        ready = means seed goal achieved
+        transfer = move media from transmission to jellfin
         """
+
         for torr in self.client.get_torrents():
             down_done = self._download_status(torr)
             seed_done = self._seed_status(torr)
