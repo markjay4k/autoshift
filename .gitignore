@@ -2,4 +2,3 @@ __pycache__/*
 .logs/*
 .env
 venv/*
-clogger2.py

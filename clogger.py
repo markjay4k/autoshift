@@ -70,6 +70,7 @@ def log(
         max_bytes: int = 524288,
         backup_count: int = 2,
         logger_name: str = __name__,
+        msecs: bool = False,
     ) -> logging.Logger:
     
     loglevel = {
@@ -92,12 +93,15 @@ def log(
     logger = logging.getLogger(logger_name)
     logger.setLevel(level)
     asctime = '{asctime:15s}'
-    msecs = '{msecs:03.0f}'
     module = '{module:>7s}'
     levelname = '#c{levelname:>8s}#r'
     message = '{message}'
+    if msecs:
+        _msecs = '{msecs:03.0f}'
+    else:
+        _msecs = ''
     formatter = ColorFormatter(
-        fmt=f'{asctime}.{msecs}| {mod.aqua(module)} {levelname}| {message}',
+        fmt=f'{asctime}.{_msecs}| {mod.aqua(module)} {levelname}| {message}',
         datefmt='%Y-%m-%d %H:%M:%S',
         style='{'
    )
