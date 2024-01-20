@@ -45,7 +45,7 @@ def msync(args):
     else:
         if args.dryrun:
             log.info(f'{n+1} torrent(s) ready to transfer to Jellyfin')
-            log.info(f'None were transferred because (--dryrun=True)')
+            log.info(f'No torrents transferred (--dryrun=True)')
             log.info(f'run script without "--dryrun" flag to transfer')
         else:
             log.info(f'{n+1} torrent(s) transferred to Jellyfin library')
