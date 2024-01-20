@@ -34,6 +34,7 @@ RUN echo "VERBOSE=$VERBOSE" >> /etc/environment
 
 RUN chmod +x cron_schedule.sh
 RUN touch /var/log/cron.log
+
 RUN echo "--------------------------" >> /var/log/cron.log
 RUN echo "AUTOSHIFT" >> /var/log/cron.log
 RUN echo "    author: markjay4k" >> /var/log/cron.log
@@ -41,6 +42,7 @@ RUN echo "   version: 0.1" >> /var/log/cron.log
 RUN echo "--------------------------" >> /var/log/cron.log
 RUN echo "cron schedule: ${CRON_SCHEDULE}" >> /var/log/cron.log
 RUN echo "    log level: ${LOG_LEVEL}" >> /var/log/cron.log
+
 RUN pip3 install -r requirements.txt
 RUN ./cron_schedule.sh
 
