@@ -97,11 +97,11 @@ def log(
     levelname = '#c{levelname:>8s}#r'
     message = '{message}'
     if msecs:
-        _msecs = '{msecs:03.0f}'
+        _msecs = '.{msecs:03.0f}'
     else:
         _msecs = ''
     formatter = ColorFormatter(
-        fmt=f'{asctime}.{_msecs}| {mod.aqua(module)} {levelname}| {message}',
+        fmt=f'{asctime}{_msecs}| {mod.aqua(module)} {levelname}| {message}',
         datefmt='%Y-%m-%d %H:%M:%S',
         style='{'
    )

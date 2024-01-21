@@ -23,10 +23,12 @@ class DirEntree:
             error = f'Download incomplete: {torrent.name=}'
             self.log.warning(error)
             raise FileNotFoundError(error)
+
         if not torr.download_done:
             error = f'Seeding incomplete: {torrent.name=}'
             self.log.warning(error)
             raise AttributeError(error)
+
         if self.mediatype == 'UNDEFINED':
             error = f'torrent mediatype is undefined'
             self.log.warning(self.mod.bold(error))
@@ -65,10 +67,10 @@ class DirEntree:
             return os.path.join(self.jf_shows, cleanpath)
 
     def clean_name(self, *args: str, name: str=None, spacer: str='.') -> str:
-        self.chars = (' ', '(', ')', '[', ']', *[x for x in args])
+        chars = (' ', '(', ')', '[', ']', *[x for x in args])
         if name is None:
             name = self.name
-        for char in self.chars:
+        for char in chars:
             if char in name:
                 name = name.replace(char, spacer)
         if '\'' in name:

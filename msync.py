@@ -35,7 +35,7 @@ def msync(args):
             continue
         else:
             os.renames(old=oldpath, new=newpath)
-            log.info(f'  Removing torrent: {torrent.name}')
+            log.info(f'  {mod.bold("Removing torrent")}: {torrent.name}')
             client.remove_torrent(torrent)
     else:
         log.info(mod.green(f'Torrent scan complete'))
