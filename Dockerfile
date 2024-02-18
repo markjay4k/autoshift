@@ -1,5 +1,5 @@
 FROM python:3.11-slim
-RUN apt update && apt -y install cron
+RUN apt-get update && apt-get -y install cron
 
 WORKDIR /app
 
