@@ -34,9 +34,15 @@ def msync(args):
         if args.dryrun:
             continue
         else:
-            os.renames(old=oldpath, new=newpath)
-            log.info(f'  {mod.bold("Removing torrent")}: {torrent.name}')
-            client.remove_torrent(torrent)
+            try:
+                os.renames(old=oldpath, new=newpath)
+            except OSError as error:
+                log.warning(f'{error}')
+                log.warning(f'torrent and directory already present')
+                log.warning(f'{torrent.name}')
+            finally:
+                log.info(f'  {mod.bold("Removing torrent")}: {torrent.name}')
+                client.remove_torrent(torrent)
     else:
         log.info(mod.green(f'Torrent scan complete'))
 
