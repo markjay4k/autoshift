@@ -30,7 +30,7 @@ def msync(args):
         log.info(f'{mod.bold(torrent.torr.mediatype.upper()):>6s} -> {torrent.name}')
         if args.verbose:
             log.info(f'   {mod.bold("from")}: {oldpath.replace(dpath, "")}')
-            log.info(f'     {mod.bold("to")}:{"":9s}{newpath.replace(dpath, "")}')
+            log.info(f'     {mod.bold("to")}:{"":1s}{newpath.replace(dpath, "")}')
         if args.dryrun:
             continue
         else:
