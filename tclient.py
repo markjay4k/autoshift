@@ -21,7 +21,7 @@ class TClient:
     UNDEFINED = 'UNDEFINED'
 
     def __init__(self) -> None:
-        self.log = clogger.log(self.loglevel, logger_name='client')
+        self.log = clogger.log(self.loglevel)
         self.mod = clogger.mods()
         self.client = Client(
             host=os.getenv('TR_HOST_IP'),

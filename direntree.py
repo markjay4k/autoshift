@@ -12,7 +12,7 @@ class DirEntree:
     tr_dir = os.getenv('TR_PATH')
 
     def __init__(self, torr: torrent.Torrent) -> None:
-        self.log = clogger.log(self.loglevel, logger_name='direntree')
+        self.log = clogger.log(self.loglevel)
         self.mod = clogger.mods()
         self.torr = torr
         self.id = self.torr.id
