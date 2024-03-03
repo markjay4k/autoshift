@@ -40,7 +40,7 @@ def msync(args):
                 log.warning(f'{error}')
                 log.warning(f'torrent and directory already present')
                 log.warning(f'{torrent.name}')
-            finally:
+            else:
                 log.info(f'  {mod.bold("Removing torrent")}: {torrent.name}')
                 client.remove_torrent(torrent)
     else:

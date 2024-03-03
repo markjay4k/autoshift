@@ -54,9 +54,9 @@ class DirEntree:
         seasondir = f'{seriesdir}.S{self.torr.info["season"]:02d}'
         if self.mediatype == 'show':
             episodedir = self.clean_wrapped()
+            return os.path.join(seriesdir, seasondir, episodedir)
         elif self.mediatype == 'season':
-            episodedir = ''
-        return os.path.join(seriesdir, seasondir, episodedir)
+            return os.path.join(seriesdir, seasondir)
 
     def new_path(self) -> str:
         if self.mediatype == 'movie':
