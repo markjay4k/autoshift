@@ -65,14 +65,15 @@ class ColorFormatter(logging.Formatter):
 
 
 def max_len():
-    maxlen = max([
-        len(x.name.split('.py')[0]) for x in os.scandir('/app') if \
-        x.name.endswith('.py') and x.is_file()
-    ])
-    if maxlen > 1:
-        return maxlen
+    try:
+        maxlen = max([
+            len(x.name.split('.py')[0]) for x in os.scandir('/app') if \
+            x.name.endswith('.py') and x.is_file()
+        ])
+    except FileNotFoundError as error:
+        return 10
     else:
-        return 5
+        return maxlen
 
 
 def log(

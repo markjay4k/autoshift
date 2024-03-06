@@ -2,3 +2,7 @@ __pycache__/*
 .logs/*
 .env
 venv/*
+dirtee.py
+fuzz.sh
+stalz.py
+tcl.py
