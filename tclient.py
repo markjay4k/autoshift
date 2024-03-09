@@ -2,6 +2,7 @@
 
 from transmission_rpc import Client
 from transmission_rpc import torrent
+from types import GeneratorType
 from direntree import DirEntree
 import PTN as ptn
 import clogger 
@@ -13,6 +14,10 @@ class TClient:
     jf_movies = os.getenv('JF_MOVIES')
     jf_shows = os.getenv('JF_SHOWS')
     tr_dir = os.getenv('TR_PATH')
+    host = os.getenv('TR_HOST_IP')
+    port = os.getenv('TR_HOST_PORT')
+    username = os.getenv('TR_USER')
+    password = os.getenv('TR_PASS')
 
     EPISODE = 'episode'
     SEASON = 'season'
@@ -24,10 +29,10 @@ class TClient:
         self.log = clogger.log(self.loglevel)
         self.mod = clogger.mods()
         self.client = Client(
-            host=os.getenv('TR_HOST_IP'),
-            port=os.getenv('TR_HOST_PORT'),
-            username=os.getenv('TR_USER'),
-            password=os.getenv('TR_PASS'),
+            host=self.host,
+            port=self.port,
+            username=self.username,
+            password=self.password,
         )
         self.log.debug(f'client connected ({self.client.server_version})')
         self.skipexts = ( 
@@ -86,13 +91,12 @@ class TClient:
     def get_torrents(self):
         return self.client.get_torrents()
 
-    def done_torrents(self):
+    def done_torrents(self) -> GeneratorType:
         """
         returns generator of torrents ready to transfer
         ready = means seed goal achieved
         transfer = move media from transmission to jellfin
         """
-
         for torr in self.client.get_torrents():
             down_done = self._download_status(torr)
             seed_done = self._seed_status(torr)
